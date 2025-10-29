@@ -4,3 +4,7 @@ from django.http import HttpResponse
 def blog(request):
     print('cliente acessou a página de blog')
     return HttpResponse('Meu Blog')
+
+def exemplo(request):
+    print('cliente acessou a página de exemplo')
+    return HttpResponse('Meu exemplo')
