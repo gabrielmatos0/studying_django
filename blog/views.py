@@ -10,6 +10,7 @@ def blog(request):
 
     return render(request, 'blog/index.html', context)
 
+
 def exemplo(request):
     print('cliente acessou a página de exemplo')
 
