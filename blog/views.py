@@ -14,6 +14,18 @@ def blog(request):
     return render(request, 'blog/index.html', context)
 
 
+def post(request, id):
+    print('post id:', id)
+
+    context = {
+        'text': 'Página de Post!',
+        'title': 'Post - ',
+        'posts': posts
+    }
+
+    return render(request, 'blog/index.html', context)
+
+
 def exemplo(request):
     print('cliente acessou a página de exemplo')
 
