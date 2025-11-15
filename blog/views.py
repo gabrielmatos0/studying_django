@@ -1,11 +1,14 @@
 from django.shortcuts import render
+from blog.data import posts
+
 
 def blog(request):
     print('cliente acessou a página de blog')
 
     context = {
         'text': 'Página de Blog!',
-        'title': 'Blog - '
+        'title': 'Blog - ',
+        'posts': posts
     }
 
     return render(request, 'blog/index.html', context)
