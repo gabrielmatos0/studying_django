@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from blog.data import posts
+from typing import Any
+from django.http import HttpRequest, HttpResponse
 
 
 def blog(request):
@@ -14,16 +16,24 @@ def blog(request):
     return render(request, 'blog/index.html', context)
 
 
-def post(request, id):
-    print('post id:', id)
+def post(request: HttpRequest, post_id: int) -> HttpResponse:
+    found_post: dict[str, Any] | None = None
+
+    for post in posts:
+        if post['id'] == post_id:
+            found_post = post
+            break
+
+    if found_post is None:
+        raise Exception('Post inexistente.')
 
     context = {
-        'text': 'Página de Post!',
-        'title': 'Post - ',
-        'posts': posts
+        # 'text': 'Página de Post!',
+        'title': found_post['title'] + ' - ',
+        'post': found_post
     }
 
-    return render(request, 'blog/index.html', context)
+    return render(request, 'blog/post.html', context)
 
 
 def exemplo(request):
