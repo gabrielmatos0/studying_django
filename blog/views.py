@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from blog.data import posts
 from typing import Any
-from django.http import HttpRequest, HttpResponse
+from django.http import HttpRequest, HttpResponse, Http404
 
 
 def blog(request):
@@ -25,7 +25,7 @@ def post(request: HttpRequest, post_id: int) -> HttpResponse:
             break
 
     if found_post is None:
-        raise Exception('Post inexistente.')
+        raise Http404('Post inexistente.')
 
     context = {
         # 'text': 'Página de Post!',
